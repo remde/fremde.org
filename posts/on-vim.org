@@ -1,0 +1,31 @@
+#+TITLE: On vim
+#+DATE: <2021-03-11 Thu>
+
+There are a few game-changing moments in our lives, be it personal or professional, that keep coming back to our memories.
+
+Coding wise, I still remember how I felt when I wrote my first if statement. It came after a need: I needed to check a condition. To figure my age with a subtraction, I needed to know *if* my birthday month is less or higher than /current/.
+
+If. Boom. Minds were blown. Code was written. Bad code. Nevertheless, it was enough to plant the seed for a lifelong passion. As well as a bunch of other problems. Who knew that a decade of intense computer usage would cause issues?
+
+** vim
+vim is a 1991 text editor made for a time when we had no mice. We had awful keyboards, super slow computers, no IDEs at all, and very few, or even none, tutorials to help us through our every programming needs.
+
+In vim, we move the cursor with ~hjkl~, we don't copy or paste, we ~yank~ and ~put~, and many other quirks; but what gives vim its greatness is the Modes system.
+
+vim has five possible modes: ~Normal~, ~Insert~, ~Visual~, ~Command~, and ~Replace~. In normal, you can't type. To type, you press ~i~, go to ~insert~ mode, and then type. This allows for a plethora of keybinds and commands that otherwise would not be possible. ~dd~, for instance, deletes an entire line. To change something between parenthesis, for example, you could do ~ci(~. It's incredibly easy and even faster than using a mouse. And amazing for your wrist health.
+
+** Motions and Operators
+What makes learning all the seemingly endless commands easy is the operators and motions system. To explain that, let's look at some motions.
+
+*Motions.* There is no mouse to control the cursor, so we have many keybinds to make navigation fast. ~w~ goes to the next word, and ~b~ to the previous word. ~hjkl~ is left, down, up, and right, respectively. ~}~ goes to the next block of code delimited by a blank line. We can also use numbers with that. ~3w~ jumps three words, ~10j~ jumps 10 lines down, and so it goes.
+
+*Operators.* Take ~d~, the delete operator. ~d~ doesn't do anything by itself, it needs a motion. Remember them? Just append them now. ~dw~ deletes the next word. ~d5b~ deletes five words backwards. ~d2}~ deletes two blocks of code. You get the idea. Other operators include ~y~ for yanking, ~c~ for changing, and ~>~ for identing.
+
+It is a very unix-like philosophy of doing one thing and one thing only, keeping it orthogonal, and just combining everything together effortlessly. And the above is, of course, a very small fraction of everything that vim can do.
+
+** Game-changing moments
+It takes a while to get comfortable with vim. After all, there are decades of bad habits to unlearn, and even more decades of new habits to learn. But it is a great feeling. It feels like playing piano, or playing a rhythm game, and seeing everything falling into place super fast is very satisfying. No moving hands and no awkward mouse movements.
+
+We, as developers, type. A lot. Code, documentation, PR descriptions, emails, messages. We rewrite, copy and paste code. We even write blog posts. Some of us. We type. It makes sense to invest in something that makes our jobs much easier, healthier and more productive, even if it looks like a behemoth at first sight.
+
+vim is available in every unix machine (just run ~vim~), as well as in plugin form for VS Code, IntelliJ, and every single one of your favorite IDEs. Run ~vimtutor~ and try it out! It may change the game for you.

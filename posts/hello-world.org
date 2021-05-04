@@ -1,0 +1,12 @@
+#+TITLE: Blogging is Back
+#+DATE: <2020-01-17 Fri>
+
+It's crazy that I own this domain since I was 16. At the time it started as a blog, too, but a Wordpress blog with short stories and poems. I wouldn't show it to anyone, but nevertheless it ended up being the basis for a few lyrics of songs that I wrote in the past years. (Hope I can talk about music here, too).
+
+<h3>Goals moving forward</h3>
+The main focus of this new iteration, however, is to have a more "serious" note to it, to document projects, talk about programming, technology, fitness, finance, etc. I love all kinds of art and I would never leave it out of any project of mine, but when I eventually write about it here it will have a bit more of an analytical, introspective tone to it.</p>
+<p>Unfortunately there won't be short stories and poems! It's still a thing for me — I guess so at least, haven't written any in a while — but it still is more of a private, me-alone thing.</p>
+
+<h3>About the technology</h3>
+I have written this everywhere in the last days, but I finally settled for Gatsby which uses the React framework for front-end and generates these awesome static pages. I am also paying for a 5$ a month DigitalOcean droplet, which I strongly recommend, as my server to deploy to. They have amazing guides for everything as well, which is great. I was already familiar with hosting and remote servers (any Minecraft ex-addicts?), but even then the guides came in very handy. Excellent service.
+</p>

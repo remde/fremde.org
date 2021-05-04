@@ -1,4 +1,4 @@
-;; publish.el --- Publish org-mode project on Gitlab Pages
+;; publish.el --- Publish org-mode project
 ;; Author: Fernando Remde <ffremde@gmail.com>
 
 ;;; Commentary:

@@ -1,0 +1,24 @@
+#+TITLE: I am a Little Schemer
+#+DATE: <2021-02-13 Sat>
+
+Before switching to computer engineering, I used to be a computer science major. This lasted for one semester, precisely. The only difference between the two curriculums in the first semester was that CPE had physics, while CS had a functional programming class.
+
+A little background might be needed here before we keep going. Back then my programming experience was in C and C++. A little bit of Python. I worked with microcontroller development (PIC, Arduino), and I was into competitive programming.
+
+** One malloc() a day keeps the Dr Racket away
+So, the class. It was a Racket class, typical functional programming lessons. Atoms. Head. Tail. Recursion. I remember thinking everything was so stupid. Why would anyone do this? What about the /memory leaks/ and /imagine the size of that stack!/
+I had a few things going on back then, but if had to attribute my major switch to one particular thing, it had to be this class. I did ok at it, I just didn't want anything to do with it -- I'd much rather be seeing physics.
+
+** What goes around comes around and back around
+Justin Timberlake said something like this, and that guy seems likes someone who's onto something.
+
+A while ago I was reading about [[https://elixir-lang.org][Elixir]], that is built on top of the Erlang VM (aka BEAM), which was created decades ago but has out of the box solutions for many problems we face today such as scalability, availability and fault tolerance, mainly in the context of concurrent programming. Also about how functional programming in general is great for that, since everything there is immutable, and that works well when you have concurrent applications dealing with the same data.
+
+A perfect world without page faults? Count me in. José Valim, the Elixir creator, also is onto something. He is no Justin Timberlake, but he's brazilian, so in my book that might be even cooler than dating Britney Spears. So began my functional journey.
+
+** I am a Little Schemer
+I went through the Little Schemer book yesterday; a fun, simple and well written book on Scheme, which inspired this blog post, and further ignited my appreciation for functional programming. Scheme, by the way, is /basically/ Racket. Not REALLY, but yes, kinda is.
+
+I believe functional programming might be one of the most underappreciated things in the software engineering/computer science world. I believe its usefulness goes much beyond academic and super specific high level purposes. We have a few well known businesses that adopted FP -- notably Nubank, Discord, and Stone, and I can see a future where we see more and more applications in production with functional languages in their stack.
+
+I can safely say that Dr Racket is the best doctor I have ever had. And that Justin Timberlake was definitely right.

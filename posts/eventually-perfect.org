@@ -1,0 +1,49 @@
+#+TITLE: Eventually Perfect
+#+DATE: <2021-03-28 Sun>
+
+Networks are weird. The world wide web is a big /gambiarra/[fn:1], despite being one of the greatest feats of engineering. Well, what is engineering, if not a collection of working /gambiarras/?
+
+You might have already heard of /microservices/ by now. But what are those? Is it another buzzword that doesn't mean much? Is it just a fad? /Is this future, or is this past?/[fn:2] Don't tell me it's another /gambiarra/.
+
+** Microservices
+Microservices is a way of referring to a *system-oriented architecture*. In practice, it is a paradigm shift from /monoliths/ and centralized applications to a distributed systems architecture that communicate with messages through the network. Say you have a frontend and a backend, but this backend is actually many different /microservices/, and each of those has a different responsibility.
+
+One of the main advantages of a system-oriented architecture is that you can scale a single part of your application. Let's say one of those microservices is responsible for video uploading in a social network application. If all the users want to do is uploading videos and not much commenting, you only need to scale up the uploading service, and not the commenting service. In a world that this application runs in the cloud, you probably have those services running in /elastic/[fn:3] containers, which makes everything even cooler.
+
+Another advantage is the fault tolerance. In a distributed system architecture, you can have redundant nodes (computers) to mitigate a microservice going down. This way, you can make your system run through different paths. That's precisely how Netflix, Amazon, etc, never go down entirely. Their systems crash, but their fault tolerance and distributed architecture allow for a smooth experience to the user even when things go south.
+
+** Passing Messages
+Microservices communicate through the network and, as I was saying earlier, networks are weird. Sometimes things just not work. Messages get lost. Messages get delayed for reasons totally out of the developer's control. For a complex system to run so smoothly, all these issues have to be calculated.
+
+The big dilemma is how do we know if a node is malfunctioning. You might have heard of the two general's dilemma, or the byzantine generals, but the bottomline is that is hard to ensure that messages over the network are correct and reliable.
+
+The premise to ensure a node is working is simple. We ping it. If it responds, it is alive. If it doesn't, it is dead. Great. Except that sometimes the ping might be lost. And, even if the ping arrives, the answer back might be lost, and our sender will believe the node is dead. And even when the ping arrives, the node is alive, the node answers back, and the answer arrives, we might have a message delay for whatever reason, and the receiver counts the node as dead because it already timed out.
+
+Speaking of timeout. How long should this timeout be? There isn't much of an answer to this, but we can look at how TCP does it to better understand the situation.
+
+** Networks are Weird
+TCP is the famous network /transport-layer/ protocol and our best attempt at reliability and correctness over the internet. Its alternative, UDP, doesn't care about any of this, and that's why the e-mail protocols are built on top of TCP. Imagine if an important e-mail simply gets lost, or is sent but with with a corrupted body?
+
+How TCP works is beyond the scope of this post, so let's get back to the timeout. Below is a simplification that doesn't account for how TCP guarantees that the message is correct.
+
+We have two nodes: the sender and the receiver. The sender keeps sending the bytes to the receiver and starts a timer. Upon receiving the message, the receiver sends an ACK (acknowledgement) message back to the sender. In this ACK message there is also which was the last byte that was properly received, so if the timer expires without an ACK the sender will just keep sending again and again the non-received messages.
+
+To calculate this timeout number, we have to look at *RTT*, or round-trip time. This is how long a message will take to travel from the sender to the receiver and back to the sender again. Our timeout must be higher than this, otherwise we will always timeout the ACKs, since they will arrive after a RTT.
+
+The issue is that RTT is not a fixed number. It keeps changing, because well, networks are weird. So the TCP protocol calculates a timeout taking into account the current RTT, how much it varies, and how much it was before. This makes so that our timeout is usually higher than the RTT, but not if the RTT has a huge unexpected spike. There will be timeouts even when the messages are all properly sent due to big delays, but we will try to minimize those.
+
+The final equation is worth taking a look, but for now I believe it's enough to understand the issue in a high level.
+
+** Eventually Perfect
+So, what is the answer? Even TCP's model has false positives. What is *THE TIMEOUT*? Unfortunately there is no answer to this question. The timeout value will depend on how critical the system is, *where* the system is, and also the business needs and capability. There is a whole research area to that, but even then we will always have to deal with false positives as the system can't be 100% predicted and, thus, can't be 100% perfect.
+
+What most systems do is work in an /eventually perfect/ fashion. It means that the nodes keep being pinged, and if they don't respond in time they will be marked as dead. You already know that this will result in false positives, but it doesn't matter, because the nodes will keep being pinged. Again and again. And, with enough pings, they will be, eventually, perfect. We will rule out the network weirdness uncertainty and everything will be properly classified given enough retries. Faulty nodes as faulty, working nodes as working.
+
+Keep this in mind as a lesson. Whenever you are being criticizing or being too hard on yourself, consider service-oriented architecture. It's ok, keep trying. We are all eventually perfect.
+
+
+-----
+
+[fn:1]brazilian slang that means using improvised methods to solve a problem
+[fn:2]twin peaks reference, go watch it
+[fn:3]self-scalable
