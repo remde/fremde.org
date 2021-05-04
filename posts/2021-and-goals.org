@@ -1,0 +1,12 @@
+#+title: 2021 and Goals
+#+date: <2021-01-17 Sun>
+
+It's been exactly one year since my first blog post here. This is a coincidence, I just noticed when I copied the first post file to use as skeleton to this one and I just had to change the year. That's cute.
+A lot of stuff happened and this got a little bit abandoned, but I feel like it is a good time to reflect on what I want to do with these projects.
+
+** The website
+I like it the way it is. The blogging, the bit with the portfolio. I think it is well made. Nice to look at, got some nice animations, nothing fancy, but it gets the job done. I will however, at the course of this year, come up with a more web 1.0 feel to it as it has been my goal since the beginning, but seemed like a nice opportunity to learn some CSS and HTML styling with this.
+I'm still thinking this through as it is not a high priority, but the front end will definitely change. Not sure if I'm keeping Gatsby. It gets the job done pretty well but there may be some opportunity to learn other technologies doing things in a different way.
+
+** Other projects
+I have been trying to read more about backend architectures. The book "Designing Data Intensive Applications" opened my eyes to many different things regarding architecture and distributed systems. Great read. I also got my eyes on a few open source projects, as well as developing a CLI application written in Golang that is probably top priority right now and I will come back to it in a different post. And, of course, writing. I plan to keep this more updated with sporadical more serious texts going also to my Medium page.
