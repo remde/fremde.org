@@ -1,5 +1,5 @@
 ;; publish.el --- Publish org-mode project on Gitlab Pages
-;; Author: Sachin Patil <iclcoolster@gmail.com, psachin@redhat.com>
+;; Author: Fernando Remde <ffremde@gmail.com>
 
 ;;; Commentary:
 ;; This Elisp will publish the org-mode files in 'posts/' to HTML format in 'public/'
