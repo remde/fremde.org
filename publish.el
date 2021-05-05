@@ -14,10 +14,7 @@
 (package-initialize)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-refresh-contents)
-(package-install 'htmlize)
 (package-install 'org-plus-contrib)
-(package-install 'ox-reveal)
-(package-install 'simple-httpd)
 
 (require 'org)
 (require 'ox-publish)
