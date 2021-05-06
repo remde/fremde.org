@@ -16,7 +16,7 @@ make
 #+end_src
 
 *** Hosting the files
-- The files in /public can be hosted locally using a Python webserver:
+- The files in =/public= can be hosted locally using a Python webserver:
 #+begin_src python
 python3 -m http.server --directory=public
 #+end_src
