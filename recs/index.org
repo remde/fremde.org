@@ -1,0 +1,32 @@
+#+TITLE: Recommendations
+
+There are a few things in life I truly enjoy. Three of them are consuming content, making lists, and plain text files. What follows is the union of this venn diagram.
+
+** Music
+These are my favorite albums of all time:
+1. The Beach Boys - Pet Sounds
+2. Madvillain - Madvillainy
+3. Neutral Milk Hotel - In the Aeroplane Over the Sea
+4. Charli XCX - Charli
+5. Beach House - Bloom
+6. Radiohead - Kid A
+7. Death Grips - Bottomless Pit
+8. The Beatles - Revolver
+9. Kanye West - The Life of Pablo
+10. OutKast - ATLiens
+
+** Film
+These are my favorite films of all time:
+1. Mulholland Drive (2001), dir. David Lynch
+2. Yi Yi (2000), dir. Edward Yang
+3. The Player (1992), dir. Robert Altman
+4. 2001: A Space Odyssey (1968), dir. Stanley Kubrick
+5. All About Lily Chou-Chou (2001), dir. Shunji Iwai
+
+** Technical Books
+These are my favorite technical books:
+1. The Little Schemer by Daniel P. Friedman and Matthias Felleisen
+2. Designing Data-Intensive Applications by Martin Kleppmann
+3. Effective Java by Joshua Bloch
+4. You Don't Know JS Yet series by Kyle Simpson
+5. The Project Phoenix by Gene Kim, Kevin Behr, and George Spafford
