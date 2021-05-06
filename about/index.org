@@ -1,0 +1,14 @@
+#+TITLE: About
+
+** Me
+Hi, my name is Fernando Remde.
+I am a software developer and currently a computer engineering student at [[http://www.ufrgs.br/][UFRGS]].
+I enjoy the many pleasures of life such as software, music, films, music, software, my dogs, software, and plain text files.
+
+You can find me at [[https://twitter.com][Twitter]], [[https://github.com/remde][Github]], as well as many other places if you try looking for a =@fernandoremde=
+
+** This blog
+This blog is written with ~emacs org-mode~. The HTML files and paths are generated with the ~org-publish~ tool.
+The [[https://github.com/remde/fremde.org][code]] is available at my Github. It is truly a fancy stack.
+
+Opinions posted here are my own.
