@@ -78,9 +78,6 @@ body code {
   overflow-x: auto;
   font-size: .9em;
 }
-body li {
-  margin-bottom: 1em;
-}
 body .tag {
   background: transparent;
   font-size: 0.6em;
