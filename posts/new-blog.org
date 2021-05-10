@@ -1,0 +1,25 @@
+#+title: New Blog
+#+date: <2021-05-10 Mon>
+#+filetags: org-mode orgmode emacs
+
+So it happened, my blog changed again. This time for a much more simplistic layout.
+
+I've been wanting to do since the beginning, but I always took the opportunity of "designing a blog" to learn something new. Last time was React, so I picked up Gatsby and set up a fancy website with a lot of interactions. This time I wanted to finally go for the minimalistic-web-1.0-looks. And I did so without giving up of learning something new.
+
+* Emacs
+This will have a separate blog post, but let's say I've been using emacs a lot lately. Actually, let's say the truth that emacs has taken over control of my life. I feel like when I learned to use ~vim~ again, but this time I can do anything I want. It's crazy.
+
+* Org-mode
+And this is one of emacs' killer features, honestly. Org-mode is something like ~markdown~, but much more powerful. It also has integration with ~org-agenda~, so you can use it as a productivity tool with to-do lists, bullet points, and schedule things.
+
+As if this wasn't enough, ~org-mode~ can basically do anything. Yes, at first glance it does everything markdown does with a simpler syntax, but it has so much more. You can even write sheet music in it, it's unbelieveable. I might cover it more in a future post, but I recommend watching some youtube videos because words can't describe the power of Org.
+
+* Org-publish
+Now, this is where the magic happens. ~org-publish~ is a tool to build static files from ~.org~ files. So what I do is write everything in ~.org~, and ~org-publish~ converts everything to HTML and sets up the URL paths. I do it so more easily with a ~Makefile~, which is a tool I really like (and might also write a blog post eventually).
+
+You can, of course, see the code for this website at [[https://github.com/remde/fremde.org][my github]]. While you are there, notice that my ~README~ is ~.org~. And since you're already there, notice that every blog post there is interpreted by Github. So yeah, Github understands ~.org~ files. You can actually read this blog straight from the repository. But you're gonna miss the cool things such as the RSS feed, I guess.
+
+* For the future
+I still need to tweak some settings since this CSS is hard coded by me in one or two ~.css~ files, but this is what I always wanted. Super simple, super web 1.0, super minimalistic, super barebones. These are the pages I like the most -- I'm a big fan of plain text.
+
+I'm definitely keeping this setup for a while, until I fall in love with a solution/editor/operating system better than emacs. Considering emacs has been here since the 70s, I don't see that happening. But you never know.
