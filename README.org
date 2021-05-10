@@ -12,13 +12,13 @@ This website can accessed [[http://rmdf.org][here]]
 *** Building the files
 - To build the public files, run in the directory root:
 #+begin_src shell
-make
+$ make
 #+end_src
 
 *** Hosting the files
 - The files in =/public= can be hosted locally using a Python webserver:
 #+begin_src python
-python3 -m http.server --directory=public
+$ python3 -m http.server --directory=public
 #+end_src
 
 This is a website powered by [[http://orgmode.org][emacs org-mode]].
