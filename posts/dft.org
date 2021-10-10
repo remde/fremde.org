@@ -1,8 +1,8 @@
-#+TITLE: Microprocessor Design for Testing (DFT)
+#+TITLE: DFT, or Design for Testing
 #+date: <2021-10-06 Wed>
 #+filetags: hardware testing
 
-Let's delve a little bit into the physical world. Let's say we are to build a microprocessor, kind of like Intel. We will be spending crazy amounts of money to build millions of microprocessors. Before doing all of this, how do we make sure that our design actually works?
+Today we shall delve a little bit into the physical world. Let's say we are to build a microprocessor, kind of like what Intel does. We will be spending huge amounts of money to build millions of microprocessors that power a variety of devices. Before doing all of this, how do we make sure that our designed hardware actually works?
 
 * Design for Testing
 
@@ -83,7 +83,7 @@ Now, bringing these concepts to /our/ world, what can we learn? Is there a DFT e
 
 - Unit testing might be used to test for edge cases that could break our system, although their nature is usually much more functional, testing outputs given the inputs.
 
-- Modifying the structure to allow for better testing reminds me of dependency injection. Another case where we modify the structure is creating =interfaces= purely for mocking them.
+- Modifying the structure to allow for better testing reminds me of dependency injection. Another case where we modify the structure is creating =interfaces= purely for mocking them in tests.
 
 It is important to note that the real world scenarios are much different, especially because software isn't restricted by the laws of physics. Another key difference is that software practices and tools are years ahead of hardware's. Perhaps mainly because hardware is more niche, or because there isn't much of an open source scene, everything being centralized in a few companies such as Cadence.
 
