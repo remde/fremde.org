@@ -6,7 +6,7 @@ Let's delve a little bit into the physical world. Let's say we are to build a mi
 
 * Design for Testing
 
-Design for Testing, better known as DFT, is the concept of slightly modifying a hardware to allow for better testing. This process is done in many steps throughout the whole manufacturing cycle, from its inception and logical synthesis up to the physical synthesis.
+Design for Testing, better known as DFT, is the concept of slightly modifying a hardware's structure to allow for better testing. This process is done in many steps throughout the whole manufacturing cycle, from its inception and logical synthesis up to the physical synthesis.
 
 DFT, however, isn't exactly made for testing functionality. The main idea is to guarantee that the circuit has been assembled correctly from the low-level building blocks specified in a /structural netlist/[fn:1], making sure that all specified logic gates are present, operating correctly, connected correctly, and the specified constraints make sense. The idea of functional correctness, perhaps more familliar to our software-like minds, isn't present here. We are not testing inputs and outputs of a function, we are confirming that our design is correct and following the laws of physics.
 
@@ -14,11 +14,79 @@ DFT, however, isn't exactly made for testing functionality. The main idea is to 
 
 Let's take a look at this VHDL snippet:
 #+begin_src
-:
+entity light8080 is
+    Port (
+            addr_out :  out std_logic_vector(15 downto 0);
+
+            inta :      out std_logic;
+            inte :      out std_logic;
+            halt :      out std_logic;
+            intr :      in std_logic;
+
+            vma :       out std_logic;
+            io :        out std_logic;
+            rd :        out std_logic;
+            wr :        out std_logic;
+            fetch :     out std_logic;
+            data_in :   in std_logic_vector(7 downto 0);
+            data_out :  out std_logic_vector(7 downto 0);
+
+            clk :       in std_logic;
+            reset :     in std_logic );
+end light8080;
+#+end_src
+These are the I/O connections for a real CPU called [[https://opencores.org/projects/light8080][light8080.]] VDHL, as the =D= suggests, is a /description/ language. And so is Verilog, the other well known hardware description language. This means that instead of imperatively creating behaviours, we merely describe our hardware and its connections. Much of what happens with it depends on the outside world.
+
+During a synthesis, we can simulate an environment and create stimuli in order to verify if our design, which means our VHDL or Verilog files, work. We can do this in =.sdc= files, or =constraint= files. Here, we can describe constraints and timings (such as our clock period) and see how our design works with it.
+
+Let's take a look at this SDC snippet:
+#+begin_src
+set_load_unit -picofarads 1
+set_time_unit -nanoseconds 1
+set clk_uncertainty 0.4 ;
+set out_delay 0.5 ;
+create_clock -name {clk} -period 2.8 [get_ports {clk}]
+set_max_fanout 8 [current_design]
+
+set_input_delay -clock clk -max 0.2 [all_inputs]
+set_input_transition -rise 0.2 [all_inputs]
+set_input_transition -fall 0.2 [all_inputs]
+
+set_load -min 0.0014 [all_outputs]
+set_load -max 0.32 [all_outputs]
+#+end_src
+So here we have described a bit about our clock. The period is 2.8ns, takes 0.2ns to rise or fall, from 0.0014ns to 0.32ns to load, and so on.
+
+However, while this is a good start, it isn't enough to test everything we want, since our design hasn't been /designed for testing/. To have information about cases not described in our constraints; to actually guarantee that our design has been correctly described and will be correctly assembled, we can try some DFT, which you now know consists of modifying our design in order to enable more precise testing and observability. So let's add a few pins to our light8080 design where we will be able to observe our CPU:
+
+#+begin_src
+scan_in_1, scan_enable: in STD_LOGIC;
+scan_out_1 : out STD_LOGIC;
 #+end_src
 
+Using a synthesis software such as [[https://www.cadence.com/ko_KR/home/tools/digital-design-and-signoff/synthesis/genus-synthesis-solution.html][Cadence Genus]], we can finally put our design to test. DFT will not only test the set constraints; it will also change our main clock to a Test Control, providing the synthesis tool more control over timing; it will swap all of our thousands of flip-flops to scan flip-flops[fn:2], and all our shift registers[fn:3] will become controlable and observable. Here are examples of a few commands Genus allows us to run:
 
+#+begin_src
+check_dft_rules > ${output-path}
+report dft_chains > ${output-path}
+report dft_registers > ${output-path}
+report dft_chains > ${output-path}
+#+end_src
 
+This is DFT. As stated in the beginning of this article, DFT will provide a plethora of information about our design in many synthesis stages and, if everything is according to our plans and with the laws of physics, of course, we can proceed with our manufacturing process.
 
+* Lessons in Software
+
+Now, bringing these concepts to /our/ world, what can we learn? Is there a DFT equivalent for software development?
+
+- The first analogy that comes to my mind when I think of /making sure that all specified logic gates are present, operating correctly, connected correctly, and the specified constraints make sense/ is a strong type system. Strong in Haskell levels, or Rust, even, where we account for =nulls= or =Nones=.
+
+- Unit testing might be used to test for edge cases that could break our system, although their nature is usually much more functional, testing outputs given the inputs.
+
+- Modifying the structure to allow for better testing reminds me of dependency injection. Another case where we modify the structure is creating =interfaces= purely for mocking them.
+
+It is important to note that the real world scenarios are much different, especially because software isn't restricted by the laws of physics. Another key difference is that software practices and tools are years ahead of hardware's. Perhaps mainly because hardware is more niche, or because there isn't much of an open source scene, everything being centralized in a few companies such as Cadence.
 
 [fn:1]description of the connectivity of an electronic circuit
+[fn:2]a flip-flop with an additional input for scanning
+[fn:3]digital circuit using a cascade of flip flops where the output of one flip-flop is connected to the input of the next
