@@ -1,0 +1,104 @@
+#+TITLE: Writing Meaningful Commit Messages
+#+date: <2021-11-22 Mon>
+#+filetags: software github
+
+Much of our software careers is spent on naming things. Naming a project. Naming a function. Naming a variable. And the list goes on.
+
+Why do we lose so much time on naming if things will work the same? What if we named every variable as =varX=, =X= starting at 0 and incrementing for each subsequent declaration? This way we can focus on what truly matters: functionality. Machine doesn't care if we name our variable as =var37= instead of =distanceInKilometers=. Right?
+
+Right. But the reason we spend so much time on naming things is simple: well named variables, functions, classes, improve the code readability. It is an investment that pays itself VERY quickly, especially when working on a team. Code can be more easily understood, so it is more easily modified, and so our solution scales, we make people happy, code is elegant, and we can understand the business by reading the code. Right?
+
+Right. Until something unexpected happens. Until one of the developers finds out a bug, and by investigating and further clarifying with stakeholders, now identifies that a business rule has been unproperly coded. Or until a change needs to be done in a complex code for a complex domain, with rules that few developers know /why/ they are there.
+
+See, naming commits is also naming things. Commit messages keep a history of our code, documenting every change that has ever happened. For some reason, people underestimate the importance of well crafted commit messages. What does a history book badly written tell the future reader? The history itself doesn't matter if we cannot learn from it.
+
+* Commit messages as "naming things"
+
+Let's try an example. Instead of calculating =profit= by =revenue - cost=, we should also multiply everything by =unitCost=, as we will be dealing with multiple units from now on. Business rule has been changed, but not everyone knows that. Now, you, someone who doesn't know better, notices that the code has changed, but you don't know why. You open the =git log=, our big history book that tracks all of our project's evolution. What would you prefer to see?
+
+1.
+    #+begin_src
+    change how profit is calculated
+    #+end_src
+
+2.
+    #+begin_src
+    Change how profit is calculated
+
+    Profit calculation should also include unit cost,
+    as we will start dealing with multiple units because
+    X and Y requirement changed blabla according to Z
+    #+end_src
+
+Option 1 just states the obvious. Option 2 provides context and explains why.
+
+And this is such a simple example. Consider an hypothetical infrastructure architectural change, that changes a =yaml= file property called =deploymentType= from =library= to =cloud=. Which one would you rather see?
+
+1.
+    #+begin_src
+    change deploymentType to cloud
+    #+end_src
+
+2.
+    #+begin_src
+    Change deploymentType to cloud
+
+    Cloud deploymentType allows us to have multiple
+    deployments without changing the version. This
+    will allow us daily deployments without having
+    to worry about version conflicts.
+    #+end_src
+
+Oh, good, now everyone can know /why/ this happened.
+
+And these "bad" examples are too good. You will very often come across messages such as:
+
+#+begin_src
+fix
+#+end_src
+
+#+begin_src
+code review changes
+#+end_src
+
+And the list goes on.
+
+So. Now that we understood the importance of good commit messages, can we define what makes a good one? And how can we achieve that?
+
+* Writing meaningful commit messages
+I have a few rules that I follow. These are:
+
+** Provide context
+It is true that not every change requires context. Some changes are too simple. But, whenever needed, add a blank line to your commit message and, in the next one, write a paragraph with context. It can contain anything. I like to link documentation, references, sometimes even images. Jira URLs, you name it. Doesn't have to be concise, it can be many paragraphs long if needed, but it needs to be **meaningful**.
+
+** Every commit works by itself
+No WIP commits. No redo commits. No =fix typo= commits. No =fix bug= commits that fix something broken in the same branch. Commits should be well ordered, and, when regressing, the code should always work. Every test should pass. Commits are whole.
+
+** No merge main branch commits
+Just rebase to an updated main. Using the interface's button adds too much noise to the log.
+
+** Respect the character limit
+A commit message that goes beyond the message box just seems lazy. I'm not sure what the limit is; both =magit emacs= and the =git commit= in the command line provide me with clear limits. Back when I used VSCode I had issues with character limit, but that might have been changed as it has been a while.
+
+** Commits start with a capital letter and an imperative word
+Change. Add. Create. Delete. This might be a matter of personal preference, but it is backed by the argument that Github also does this (=Merge branch main into...=). It looks good.
+
+* How to write meaningful commit messages
+With experience I find that a git flow is something very personal. There are many ways to do this, and there surely is a way that works for each person, but what I do is the following:
+1. Make small commits without thinking too much. If my code works, I commit. Small steps and small commits.
+2. When I'm happy with my branch and have achieved my desired solution, it's time to clean up. So I =git log= and see my first commit, or count how many commits I have made.
+3. If I have the hash to the commit before my first commit, I =git reset --soft HASH=, and now I have all the changed files without any commits. Alternatively, if I counted commits, I =git rebase -i HEAD~NUMBER_OF_COMMITS= and =fixup= every commit but the first one.
+4. Now I see what makes sense together. Magit for =emacs= is awesome at this, but VSCode is pretty good too. Then I can commit files, or chunks inside files, in a way that tells a story and follows the rules above. I was never good at using the CLI for this, but I'm sure it works well for many people.
+
+Additionally:
+- If changes are requested in a code review, for example, I will come back to that commit by =git rebase -i HEAD~NUMBER_OF_COMMITS=, mark it as =edit=, and edit it. Then, I can =git commit --amend --no-edit && git rebase --continue=. After the =rebase= is done, =git push -f= since the hashes have been changed.
+- If I changed the code and the message doesn't make sense anymore, I will go back to it also with =rebase -i=, and mark the commit as =reword=.
+
+/disclaimer: Interactive rebase is a powerful tool and enables many tricks such as these. Learning it is well advised regardless of the intention of perfectly worded commit messages :)/
+
+* Does it matter? Is it worth it?
+I'd say it is. It shows attention to detail, and it has been helpful many times. And it is not as hard as it seems.
+
+Besides being amazing for documentation, it also has other advantages such as making it easier for code review. Not only for the reviewer, who can see a clear story told by the commit messages, but also to the reviwee, who gets to change each commit individually and think of them as separate code, instead of just on thing clumped together.
+
+It surely doesn't make or break a developer. I'm sure there are many developers who write terrible commit messages who are much better engineers than I am. But everyone can improve, and I would say improving your commit messages is easy and has a big payoff.
