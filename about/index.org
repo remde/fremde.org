@@ -2,7 +2,7 @@
 
 Hi, my name is Fernando Remde.
 I am a software developer and currently a computer engineering student at [[http://www.ufrgs.br/][UFRGS]].
-I enjoy the many pleasures of life such as software, music, films, music, software, my dogs, software, and plain text files.
+I enjoy the many pleasures of life such as software, exercising, music, films, my dogs, and plain text files.
 
 You can find me at [[https://twitter.com][Twitter]], [[https://github.com/remde][Github]], as well as many other places if you try looking for a =@fernandoremde=
 
