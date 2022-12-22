@@ -2,7 +2,7 @@
 #+date: <2022-12-22 Thu>
 #+filetags: software github
 
-A while ago -- a little bit over a year -- I wrote a post with a methodical way to write clear, concise, and useful commit messages. The main argument is that this helps documentate code changes. With thoroughly explained changes, developers in the future can simply look at the commit message and better understand the context for the implementation.
+A while ago -- a little bit over a year -- I wrote a post with a methodical way to write clear, concise, and useful commit messages. The main argument is that this helps document code changes. With thoroughly explained changes, developers in the future can simply look at the commit message and better understand the context for the implementation.
 
 The method consisted in rebases, force pushes, and multi-line commits, so a) PRs would be reviewed much more easily, as each commit was an independent, self-sufficient piece of code, and b) after merged, the idea aforementioned would be fullfiled, as forever that code would be well documented in the main branch. The post can be found [[../writing-meaningful-commits.html][here.]]
 
