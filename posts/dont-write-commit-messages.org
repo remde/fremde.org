@@ -1,0 +1,37 @@
+#+TITLE: Don't Write Commit Messages
+#+date: <2022-12-22 Thu>
+#+filetags: software github
+
+A while ago -- a little bit over a year -- I wrote a post with a methodical way to write clear, concise, and useful commit messages. The main argument is that this helps documentate code changes. With thoroughly explained changes, developers in the future can simply look at the commit message and better understand the context for the implementation.
+
+The method consisted in rebases, force pushes, and multi-line commits, so a) PRs would be reviewed much more easily, as each commit was an independent, self-sufficient piece of code, and b) after merged, the idea aforementioned would be fullfiled, as forever that code would be well documented in the main branch. The post can be found [[../writing-meaningful-commits.html][here.]]
+
+My opinion has changed in the course of a year. Not that I don't think this is a reasonable approach -- I still think it works well. But we can certainly improve on that. Let's start looking at the problem.
+
+* Non-enforced processes are doomed to failure
+
+Consider imports in code. We, as team, decide that we want our imports to follow the alphabetical order. If we are only a few developers, say three, this is an easy rule to follow. If we ever forget, or an out-of-order import ever slips to the code review phase, chances are one of the other two developers will spot the issue and call it out. This is not ideal, but it works well enough.
+
+However, when we start to scale, when more people join, when the older people leave, we will start losing control of our standard. The only way to maintain this pattern is through a linter, anything that automatically checks the imports, and either reoders them by itself or shows an error in case of a wrong order.
+
+This is point number one for improving the previous commit method. Any standards that are not programatically enforced are doomed to failure in larger scales. That method required too much knowledge, too much effort, and it is not viable to expect all developers in a team to follow that.
+
+So, what is the solution?
+
+* Don't write commit messages
+
+Write PR descriptions and, through code or other tooling, make the PR description the commit message after the merge.
+
+The idea is very simple. PR descriptions are easy to edit, PR templates signalize to developers that the description is important, and most developers are already putting enough effort in their PR descriptions so their PRs are reviewed. Commits are difficult, are an extra step, and it becomes a cognitive burden to who is implementing.
+
+Not only that, but when you follow the instructions in my previous post, the result is that you don't have to write the PR description, because it is in the commit message. Which is fine. But the way around is much easier -- you don't need to write the commit message, because you wrote the PR description. And your PR will be merged with that.
+
+The only prerequisite for this to work is that PRs have to implement only one thing, having a closed scope, otherwise your commit message after the merge will be many different implementations. But this is a good standard practice and should be followed regardless.
+
+* Improving your machine-written commit messages
+
+You can improve this method even further. Create a policy that will not allow PRs to be merged without having a link to an action item, or a user story, or a spec. Then, not only the commit message will contain very thorough instructions on what the code does and why it was done in a certain way, it will also link to a business-driven story, which will contain even more information.
+
+Other things can be added to the final commit message. Lines of code changed, dependencies added, linked test cases, differences in code size, anything.
+
+This can easily be done in GitHub (see [[https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/configuring-commit-squashing-for-pull-requests][here]]), and I'm sure any other git tool will allow this.
